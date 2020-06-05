@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOK-MARK</title>
+    <style>
+        header{
+            background-color: rgb(144, 172, 204);
+            width: 100px;
+            padding-left:40%;
+            padding-right:40%;
+            padding-top: 3%;
+            padding-bottom: 3%;
+        }
+        button{
+            position: relative;
+            left: 40%;
+            bottom: 10px;
+            
+        }
+        body{
+            /* padding-left: 35%;
+            padding-top: 10%;
+            border-left: 20%;
+            padding-right: 35%; */
+            background-color: rgba(179, 197, 197, 0.562);
+        }
+        #one{
+            background-color: rgb(149, 157, 173);
+            padding-left: 40%;
+            padding-right: 30%;
+            padding-top: 3%;
+ 
+        }
+    </style>
+</head>
+<body>
+    {% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+
+{% block content %}
+
+    <div>
+        <header>BOOK-MARK</header>
+        <br>
+        <div>
+            <button><a href="{% url 'main:new' %}">CREATE</a></button>
+        </div>
+    </div>
+    <div id="one">
+        {% if posts %}
+        
+            
+        {% for bookmark in posts %}
+        <hr>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+            <h5 class="card-title">{{ bookmark.site_name }}</h5>
+            
+            <p class="card-text">{{ bookmark.site_url }}</p>
+            <form action="{% url 'main:delete' bookmark.id %}" method="POST">
+                {% csrf_token %}
+                <input type = "submit" value = "delete">
+            </form> <form action="{% url 'main:edit' bookmark.id %}">
+                {% csrf_token %}
+                <input type = "submit" value = "edit">
+            </form>
+                   
+            
+                
+        </div>
+        
+        <br>
+        {% endfor %}
+        {% if posts.has_previous %}
+        <a href="?page={{posts.previous_page_number}}">previous</a>
+        {% endif %}
+        <span>{{ posts.number }}</span>
+        <span>/</span>
+        <span>{{ posts.paginator.num_pages }}</span>
+        {% if posts.paginator.num_pages %}
+        <a href="?page={{posts.next_page_number}}">next</a>
+        {% endif %}
+        
+        {% else %}
+                <div>
+                    <p>
+                        북마크가 비어있습니다. CREATE 필요
+                    </p>
+                </div>
+        {% endif %}
+    </div>
+{% endblock %}
+</body>
+</html>

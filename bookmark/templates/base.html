@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BOOKMARK</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        header{
+            background-color: rgb(144, 172, 204);
+            width: 100px;
+            padding-left:40%;
+            padding-right:40%;
+            padding-top: 3%;
+            padding-bottom: 3%;
+            }
+            button{
+                position: relative;
+                left: 40%;
+                bottom: 10px;
+                
+            }
+            body{
+                
+                padding-left: 35%;
+                padding-top: 10%;
+                border-left: 20%;
+                padding-right: 35%;
+                background-color: rgba(179, 197, 197, 0.562);
+            }
+            #one{
+                background-color: rgb(149, 157, 173);
+                padding-left: 10%;
+                padding-bottom: 3%;
+               
+            }
+    </style>
+    {% block head %}
+        
+    {% endblock %}
+</head>
+<body>  
+
+    {% block content %}
+    
+    {% endblock %}
+    
+</body>
+</html>
